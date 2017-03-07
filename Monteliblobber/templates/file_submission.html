@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Monteliblobber{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div id="instructions_row" class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <p class="text-center lead">Use the table controls to navigate through the results. Delete unwanted records
+                and then use one of the export features to extract the data.</p>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div id="results_editor">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div id="results" class="col-md-10 hidden">
+                <div class="panel-body">
+                    <table id="result_table" class="table stripe row-border hover compact"></table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div id="loader" class="center-block"></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/monteliblobber.js') }}"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        blobSubmitter.getResults();
+    });
+
+</script>
+{% endblock extra_scripts %}

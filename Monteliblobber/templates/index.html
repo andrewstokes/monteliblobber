@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Indicator Sifter{% endblock title %}
+
+{% block content %}
+<div class="container-fluid">
+    <div id="header_row" class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <p class="text-center lead">Paste in a blob of text or upload a file to pull out network artifacts. Use the
+                <kbd>Actions</kbd> menu to update static data files.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div id="instructions_row" class="row hidden">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <p class="text-center lead">Use the table controls to navigate through the results. Delete unwanted records
+                and then use one of the export features to extract the data.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div id="blob_form" class="col-md-6">
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#paste" aria-controls="paste" role="tab" data-toggle="tab">Paste Blob</a>
+                </li>
+                <li role="presentation">
+                    <a href="#file" aria-controls="file" role="tab" data-toggle="tab">Upload File</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="paste">
+                    <form id="blob_submit">
+                        <div class="form-group">
+                            <label for="id_blob" class="hidden">Text</label>
+                            <textarea class="form-control" id="id_blob" name="blob"></textarea>
+                        </div>
+                    </form>
+                    <button id="send_button" class="btn btn-raised btn-primary">Submit</button>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="file">
+                    <form id="file_submit" method="post" action="/file" enctype=multipart/form-data>
+                        <div class="form-group">
+                            <label for="id_file" class="hidden">Select File</label>
+                            <input class="form-control" id="id_file" name="file" type="file"/>
+                        </div>
+                        <button id="file_button" type="submit" class="btn btn-raised btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div id="form_errors" class="col-md-6">
+            {% if context.errors %}
+            <br>
+            {% for error in context.errors %}
+            <p class="text-danger text-center">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div id="results_editor">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div id="results" class="col-md-10 hidden">
+                <div class="panel-body">
+                    <table id="result_table" class="table stripe row-border hover compact"></table>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div id="loader" class="center-block"></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/monteliblobber.js') }}"></script>
+
+
+<script>
+
+    $('#send_button').click(function () {
+        $(this).text('Working...');
+        blobSubmitter.submitBlob();
+    });
+
+    $('#file_button').click(function () {
+        $('#loader').addClass("loader");
+        $(this).text('Working...');
+    });
+
+</script>
+{% endblock extra_scripts %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/select.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/monteliblobber.css') }}">
+    {% block extra_styles %} {% endblock extra_styles %}
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Monteliblobber</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Actions <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li id="update_roots"><a>Update Root Domains</a></li>
+                        <li id="update_geoip"><a>Update GeoIP Database</a></li>
+                        <li id="update_blacklists"><a>Update Blacklist</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li id="update_all"><a>Update All</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+{% block content %}
+
+{% endblock content %}
+
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Created By <a href="https://github.com/andrewstokes">Andrew Stokes</a> | <a
+                href="https://github.com/andrewstokes/monteliblobber">GitHub Project</a> | This product includes
+            GeoLite2 data created by MaxMind, available from <a
+                    href="http://www.maxmind.com">MaxMind</a>.
+        </p>
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buttons.bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/buttons.html5.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dataTables.select.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/jszip.min.js') }}"></script>
+
+{% block extra_scripts %} {% endblock extra_scripts %}
+
+<script>
+
+    $('#update_roots').click(function () {
+        resourceUpdater.sendUpdate("/update_roots", "Root domains updated.");
+    });
+
+    $('#update_geoip').click(function () {
+        resourceUpdater.sendUpdate("/update_geoip", "GeoIP DB Updated.");
+    });
+
+    $('#update_blacklists').click(function () {
+        resourceUpdater.sendUpdate("/update_blacklists", "Blacklists updated.");
+    });
+
+    $('#update_all').click(function () {
+        resourceUpdater.sendUpdate("/update_all", "All static files updated.");
+    });
+
+</script>
+</body>
+</html>

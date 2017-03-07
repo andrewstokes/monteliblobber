@@ -15,12 +15,6 @@ setup(
     license=lic,
     author='Andrew Stokes',
     author_email='andrewstokes@users.noreply.github.com',
-    description='A reasonable way to identify and contextualize network artifacts.',
+    description='A reasonable way to extract and contextualize network artifacts from blobs.',
     long_description=readme,
-    install_requires=[
-        'Flask>=0.10',
-        'geoip2>=2.4.0',
-        'maxminddb>=1.2.1',
-        'requests>=2.11.1'
-    ],
 )
