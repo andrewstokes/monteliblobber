@@ -131,7 +131,10 @@ def update_root_domains():
 
     get_root_domains(app.config['ROOT_DOMAINS_URL'], app.config['ROOT_DOMAINS_PATH'])
 
-    return jsonify({'status': 200})
+    return render_template(
+        'message.html',
+        **{'type': 'success', 'category': 'Info', 'message': 'Root domains updated successfully.'}
+    )
 
 
 @app.route('/update_geoip', methods=['POST'])
@@ -143,7 +146,10 @@ def update_geoip():
 
     get_geoip_database(app.config['GEOIP_DB_URL'], app.config['MAXMIND_CITY_DB_PATH'])
 
-    return jsonify({'status': 200})
+    return render_template(
+        'message.html',
+        **{'type': 'success', 'category': 'Info', 'message': 'GeoIP database updated successfully.'}
+    )
 
 
 @app.route('/update_blacklists', methods=['POST'])
@@ -154,7 +160,10 @@ def update_blacklists():
     """
 
     get_blacklists(app.config['BLACKLISTS'], app.config['BLACKLIST_DB'])
-    return jsonify({'status': 200})
+    return render_template(
+        'message.html',
+        **{'type': 'success', 'category': 'Info', 'message': 'Blacklist database updated successfully.'}
+    )
 
 
 @app.route('/update_all', methods=['POST'])
@@ -167,7 +176,10 @@ def update_all():
     get_root_domains(app.config['ROOT_DOMAINS_URL'], app.config['ROOT_DOMAINS_PATH'])
     get_geoip_database(app.config['GEOIP_DB_URL'], app.config['MAXMIND_CITY_DB_PATH'])
     get_blacklists(app.config['BLACKLISTS'], app.config['BLACKLIST_DB'])
-    return jsonify({'status': 200})
+    return render_template(
+        'message.html',
+        **{'type': 'info', 'category': 'Info', 'message': 'All static files updated successfully.'}
+    )
 
 
 @app.route('/<path:path>', methods=['GET'])

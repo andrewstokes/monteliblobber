@@ -5,7 +5,11 @@ A reasonable way to extract and contextualize network artifacts from blobs.
 
 ## Overview
 
-This tool was developed for security analysts, researchers, and incident responders. I found plenty of times where I needed to search through a random blob of text for relevant network artifacts. I developed this tool to help automate some of the tasks needed to identify interesting things in ASCII text blobs or binary files.
+Monteliblobber is simply a web UI driven network artifact parser that allows for IP address based threat intelligence integration.
+
+I developed this tool to aid SOC analysts with automating some repetitive tasks. My fellow analysts and I found plenty of times where we needed to search through an arbitrary blob of something for network artifacts, and would inevitably need to determine the geo-location and blacklist status. After getting the beta version running we found ourselves using it for a [variety of things](#Use Cases).
+
+I thought other security analysts, researchers, and incident responders might find this tool beneficial, so I made it as easy as possible to setup and use by providing portable binary distributions for Mac and Windows.
 
 ### Features
 
@@ -166,7 +170,7 @@ Someone sends me a threat intel report in a PDF, Word Doc, email, etc. I copy th
 
 ### Malware and Process Memory
 
-I've used Monteliblobber to quickly process stings that have been dumped from static binaries or process memory.
+I've used Monteliblobber to quickly process stings that have been dumped from unpacked malware, static binaries, or process memory.
 
 ## Operational Security
 

@@ -14,6 +14,13 @@ html {
     box-sizing: inherit;
 }
 
+#logo {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 9px;
+    padding-right: 1px;
+}
+
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;

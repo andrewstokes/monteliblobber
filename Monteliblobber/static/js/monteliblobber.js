@@ -154,8 +154,9 @@ var resourceUpdater = (function () {
 
             success: function (response) {
                 loader.removeClass("loader");
-                location.reload(true);
-                alert(message);
+                //location.reload(false);
+                //alert(message);
+                $('#messages').append(response);
             },
 
             error: function (response) {
