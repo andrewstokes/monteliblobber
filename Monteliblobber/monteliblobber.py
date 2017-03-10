@@ -82,6 +82,24 @@ def index():
         return render_template('index.html', **{'context': ctx})
 
 
+@app.route('/quit', methods=['POST'])
+def quit_application():
+    """ Allows for the application to be terminated from the web ui.
+
+    :return: HTTP Template Response
+    """
+    func = request.environ.get('werkzeug.server.shutdown')
+    func()
+    return render_template(
+        'message.html',
+        **{
+            'type': 'success',
+            'category': 'Info',
+            'message': 'Application stopped... You may now close this window.'
+        }
+    )
+
+
 @app.route('/file', methods=['POST', 'GET'])
 def submit_file():
     """ Allows for submission of file objects for sifting.
@@ -133,7 +151,12 @@ def update_root_domains():
 
     return render_template(
         'message.html',
-        **{'type': 'success', 'category': 'Info', 'message': 'Root domains updated successfully.'}
+        **{
+            'type': 'success',
+            'category': 'Info',
+            'reload': True,
+            'message': 'Root domains updated successfully.'
+        }
     )
 
 
@@ -148,7 +171,12 @@ def update_geoip():
 
     return render_template(
         'message.html',
-        **{'type': 'success', 'category': 'Info', 'message': 'GeoIP database updated successfully.'}
+        **{
+            'type': 'success',
+            'category': 'Info',
+            'reload': True,
+            'message': 'GeoIP database updated successfully.'
+        }
     )
 
 
@@ -162,7 +190,12 @@ def update_blacklists():
     get_blacklists(app.config['BLACKLISTS'], app.config['BLACKLIST_DB'])
     return render_template(
         'message.html',
-        **{'type': 'success', 'category': 'Info', 'message': 'Blacklist database updated successfully.'}
+        **{
+            'type': 'success',
+            'category': 'Info',
+            'reload': True,
+            'message': 'Blacklist database updated successfully.'
+        }
     )
 
 
@@ -178,7 +211,12 @@ def update_all():
     get_blacklists(app.config['BLACKLISTS'], app.config['BLACKLIST_DB'])
     return render_template(
         'message.html',
-        **{'type': 'info', 'category': 'Info', 'message': 'All static files updated successfully.'}
+        **{
+            'type': 'info',
+            'category': 'Info',
+            'reload': True,
+            'message': 'All static files updated successfully.'
+        }
     )
 
 

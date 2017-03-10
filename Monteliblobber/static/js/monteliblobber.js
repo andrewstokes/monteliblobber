@@ -141,7 +141,7 @@ var blobSubmitter = (function () {
 })();
 
 
-var resourceUpdater = (function () {
+var resourceController = (function () {
     var loader = $('#loader');
 
     var triggerUpdate = function (targetUrl, message) {
@@ -154,8 +154,27 @@ var resourceUpdater = (function () {
 
             success: function (response) {
                 loader.removeClass("loader");
-                //location.reload(false);
-                //alert(message);
+                $('#messages').append(response);
+            },
+
+            error: function (response) {
+                loader.removeClass("loader");
+                console.log("error", response);
+                $('#form_errors').html(response.responseText);
+            }
+        });
+    };
+
+    var shutdownApplication = function () {
+        loader.addClass("loader");
+        $.ajax({
+            type: 'POST',
+            url: '/quit',
+            processData: false,
+            contentType: false,
+
+            success: function (response) {
+                loader.removeClass("loader");
                 $('#messages').append(response);
             },
 
@@ -171,6 +190,7 @@ var resourceUpdater = (function () {
         triggerUpdate(targetUrl, message);
     };
     return {
-        sendUpdate: sendUpdate
+        sendUpdate: sendUpdate,
+        shutdownApplication: shutdownApplication
     };
 })();

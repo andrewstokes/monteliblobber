@@ -45,6 +45,11 @@
                     </ul>
                 </li>
             </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <button id="shutdown_application" type="button" class="btn btn-default navbar-btn">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> Quit
+                </button>
+            </ul>
         </div>
     </div>
 </nav>
@@ -85,19 +90,23 @@
 <script>
 
     $('#update_roots').click(function () {
-        resourceUpdater.sendUpdate("/update_roots");
+        resourceController.sendUpdate("/update_roots");
     });
 
     $('#update_geoip').click(function () {
-        resourceUpdater.sendUpdate("/update_geoip");
+        resourceController.sendUpdate("/update_geoip");
     });
 
     $('#update_blacklists').click(function () {
-        resourceUpdater.sendUpdate("/update_blacklists");
+        resourceController.sendUpdate("/update_blacklists");
     });
 
     $('#update_all').click(function () {
-        resourceUpdater.sendUpdate("/update_all");
+        resourceController.sendUpdate("/update_all");
+    });
+
+    $('#shutdown_application').click(function () {
+        resourceController.shutdownApplication();
     });
 
 </script>
