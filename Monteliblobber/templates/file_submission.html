@@ -38,11 +38,18 @@
 {% block extra_scripts %}
 <script src="{{ url_for('static', filename='js/monteliblobber.js') }}"></script>
 
+<div id="exportFilename" ></div>
 
 <script>
 
     $(document).ready(function () {
-        blobSubmitter.getResults();
+
+        {% if filename %}
+        var exportFilename = "{{ filename }}";
+        {% else %}
+        var exportFilename = "monteliblobber.csv";
+        {% endif %}
+        blobSubmitter.getResults(exportFilename);
     });
 
 </script>

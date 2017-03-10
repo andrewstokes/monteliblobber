@@ -2,6 +2,7 @@
 """
 
 from flask import Flask, render_template, request, jsonify, json, abort
+from werkzeug.utils import secure_filename
 import ipaddress
 import re
 import geoip2.database
@@ -111,6 +112,7 @@ def submit_file():
         if 'file' in request.files:
             filename = os.path.join(app.config['LOCAL_CONF_DIR'], '.temp_upload.dat')
             file = request.files['file']
+            user_filename = secure_filename(file.filename)
             file.save(filename)
             del file
             with open(filename, errors='ignore') as f:
@@ -118,7 +120,7 @@ def submit_file():
                 app.config['RESULTS'] = extract_indicators(data)
             os.remove(filename)
 
-            return render_template('file_submission.html')
+            return render_template('file_submission.html', **{'filename': user_filename})
         else:
             ctx = {'errors': [
                 'No file was submitted. Please try again! '

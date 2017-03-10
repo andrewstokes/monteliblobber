@@ -54,7 +54,8 @@ var blobSubmitter = (function () {
         });
     };
 
-    var renderDataTable = function (response) {
+    var renderDataTable = function (response, filename) {
+        var exportFilename = filename;
         var tab = $('#result_table').DataTable({
             dom: '<"row" <"col-sm-6" B><"col-sm-3" i><"col-sm-3" f>><"row" <"col-sm-12" rt>><"row" <"col-sm-2" l><"col-sm-10" p><"clear">>',
             data: response.data,
@@ -84,6 +85,7 @@ var blobSubmitter = (function () {
                 }
             ],
             lengthChange: true,
+            lengthMenu: [25, 50, 100, 200, 500, "All"],
             select: true,
             buttons: [
                 {
@@ -115,7 +117,8 @@ var blobSubmitter = (function () {
                 },
                 {
                     extend: 'csvHtml5',
-                    exportOptions: {orthogonal: 'export'}
+                    exportOptions: {orthogonal: 'export'},
+                    filename: exportFilename
                 },
                 {
                     extend: 'copyHtml5',
@@ -125,10 +128,10 @@ var blobSubmitter = (function () {
         });
     };
 
-    var getResults = function () {
+    var getResults = function (filename) {
         resultsBlock.removeClass('hidden');
         $.getJSON('/results', null, function ( response ) {
-            renderDataTable(response);
+            renderDataTable(response, filename);
         });
     };
 
