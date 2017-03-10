@@ -40,7 +40,7 @@ Using the portable binaries are the fastest and easiest way to use Monteliblobbe
 
 ### Windows
 
-Download the compressed executable from the [release page][8]. Unzip and double-click. A terminal window will appear in the background and your browser window will automatically open to Monteliblobber's home page. Terminate the application by selecting the terminal window and then pressing <kbg>Ctrl</kbg>+<kbg>C</kbg>.
+Download the compressed executable from the [release page][8]. Unzip and double-click. A terminal window will appear in the background and your browser window will automatically open to Monteliblobber's home page. Terminate the application by clicking the Quit radio button at the top right of your browser window.  The home page will display a green banner with the text `Info: Application stopped... You may now close this window.` You may now close the browser window.
 
 ### Mac
 
@@ -97,7 +97,7 @@ I didn't want to assume a user would want the application calling out automatica
 
 ### Configuration
 
-There are several settings you can change to tailor Monteliblobber to meet your specific needs. To change these settings you will need to create a config file named `monteliblobber.cfg` in Monteliblobber's local config directory. The local config directory is called `.monteliblobber` and will be located in the root of your user profile.
+There are several settings you can edit to tailor Monteliblobber to meet your needs. The local config directory is called `.monteliblobber` and will be located in the root of your user profile. To change these settings you will need to create a config file named `monteliblobber.cfg` in the Monteliblobber local config directory. 
 
 > INFO: An application restart is required after creating or changing the config file.
 
