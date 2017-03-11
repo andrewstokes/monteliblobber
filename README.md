@@ -40,11 +40,11 @@ Using the portable binaries are the fastest and easiest way to use Monteliblobbe
 
 ### Windows
 
-Download the compressed executable from the [release page][8]. Unzip and double-click. A terminal window will appear in the background and your browser window will automatically open to Monteliblobber's home page. Terminate the application by clicking the Quit radio button at the top right of your browser window.  The home page will display a green banner with the text `Info: Application stopped... You may now close this window.` You may now close the browser window.
+[Download][8] the compressed executable from the release page. Unzip and double-click. A terminal window will appear in the background and your browser window will automatically open to Monteliblobber's home page. Terminate the application by clicking the Quit radio button at the top right of your browser window.  The home page will display a green banner with the text `Info: Application stopped... You may now close this window.` You may now close the browser window.
 
 ### Mac
 
-I built two different executables for Macs. The first is a typical Unix executable, and the other is a Mac application package. The Unix executable can be downloaded from the [release page][8] and run from a terminal window. The Mac application package can be downloaded and then copied to the `Applications` folder like a typical Mac application. I have not signed these executables, so you will likely need to approve the application in the security settings before it will be allowed to run. I have provided instructions on how to roll your own binary from the source if you don't feel comfortable running the ones I provided. It's okay, I understand.
+I built two different executables for Macs. The first is a typical Unix executable, and the other is a Mac application package. The Unix executable can be [downloaded][8] from the release page and run from a terminal window. The Mac application package can be downloaded and then copied to the `Applications` folder like a typical Mac application. I have not signed these executables, so you will likely need to approve the application in the security settings before it will be allowed to run. I have provided instructions on how to roll your own binary from the source if you don't feel comfortable running the ones I provided. It's okay, I understand.
 
 > IMPORTANT: If you use the Mac application package, make sure to terminate the application using the `Quit` button on the right side of the nav bar. It runs in the background without exposing a terminal window, so you will have to force quit the app if you don't use the `Quit` button. 
 
@@ -149,9 +149,32 @@ AUTO_OPEN_BROWSER = True
 
 The application settings are located in the `monteliblobber/Monteliblobber/settings.py` file. Settings with the prefix `DEFAULT_` can be customized to meet your needs. Changing other settings could break something, so use caution.
 
+
+#### Full Config File Example
+
+Paste the code below into this file: `<USER PROFILE ROOT>/.monteliblobber/monteliblobber.cfg`.
+
+```python
+LABELED_NETWORKS = {
+    'GOOG': ['209.85.192.0/24', '74.125.82.0/24', '8.8.8.8'],
+    'MSFT': ['131.107.0.0/16', '207.46.0.0/16']
+}
+WHITELISTS = {
+    'domains': ['google.com', 'microsoft.com', 'outlook.com'],
+    'network_addresses': ['127.0.0.1', '10.0.0.0/8']
+}
+BLACKLISTS = {
+    'dshield_7D': 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/dshield_7d.netset',
+    'bambenek_c2': 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/bambenek_c2.ipset',
+    'alienvault': 'https://raw.githubusercontent.com/firehol/blocklist-ipsets/master/alienvault_reputation.ipset'
+}
+AUTO_OPEN_BROWSER = True
+```
+
+
 ## General Usage
 
-![alt text](https://github.com/andrewstokes/monteliblobber/raw/development/docs/img/monteliblobber_home.png)
+![alt text](https://github.com/andrewstokes/monteliblobber/raw/master/docs/img/monteliblobber_home.png)
 
 ### Getting Data In
 
@@ -165,7 +188,7 @@ There are two primary methods of getting data in to be analyzed.
 
 Analysis results are presented in an interactive table. The idea is to use the sorting/filtering capabilities to find interesting records. The blacklist and geoip tags should help provide some extra context as you endeavor to identify interesting artifacts. You can delete uninteresting records and then dump the remaining records to a csv file/clipboard to use elsewhere. 
 
-![alt text](https://github.com/andrewstokes/monteliblobber/raw/development/docs/img/monteliblobber_filter.png)
+![alt text](https://github.com/andrewstokes/monteliblobber/raw/master/docs/img/monteliblobber_filter.png)
 
 ## Use Cases
 
