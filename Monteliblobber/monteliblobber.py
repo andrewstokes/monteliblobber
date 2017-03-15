@@ -612,16 +612,6 @@ def validate_root_domain(items, root_domains):
     return valid
 
 
-def download_updated_root_domains():
-    """ Downloads the current root domain file from IANA and saves it in the temp config
-    directory as `root_domains.txt`.
-    """
-
-    r = requests.get(app.config['ROOT_DOMAINS_URL'])
-    with open(app.config['ROOT_DOMAINS_LIST']) as f:
-        f.write(r.content)
-
-
 def convert_list_to_string(in_list):
     """ Concatenates a list of strings into a single string.
 
