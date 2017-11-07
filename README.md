@@ -103,12 +103,12 @@ There are several settings you can edit to tailor Monteliblobber to meet your ne
 
 The following are the user configurable settings and application defaults. Simply paste these into the `monteliblobber.cfg` file and the defaults will be overridden at runtime.
 
-#### USER_LABELED_NETWORKS
+#### USER_NAMED_NETWORKS
 
 This allows for adding arbitrary networks and names to the analyzer. Any networks defined here will be tagged with the label provided as the key in the dictionary item. The config shown below would cause any address in the defined networks to be tagged as `GOOG` or `MSFT`.
 
 ```python
-LABELED_NETWORKS = {
+NAMED_NETWORKS = {
     'GOOG': ['209.85.192.0/24', '74.125.82.0/24', '8.8.8.8'],
     'MSFT': ['131.107.0.0/16', '207.46.0.0/16']
 }
@@ -155,7 +155,7 @@ The application settings are located in the `monteliblobber/Monteliblobber/setti
 Paste the code below into this file: `<USER PROFILE ROOT>/.monteliblobber/monteliblobber.cfg`.
 
 ```python
-LABELED_NETWORKS = {
+NAMED_NETWORKS = {
     'GOOG': ['209.85.192.0/24', '74.125.82.0/24', '8.8.8.8'],
     'MSFT': ['131.107.0.0/16', '207.46.0.0/16']
 }
